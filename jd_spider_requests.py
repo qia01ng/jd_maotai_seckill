@@ -131,7 +131,6 @@ class QrLogin:
         通过访问用户订单列表页进行判断：若未登录，将会重定向到登陆页面。
         :return: cookies是否有效 True/False
         """
-        return False
         url = 'https://order.jd.com/center/list.action'
         payload = {
             'rid': str(int(time.time() * 1000)),
