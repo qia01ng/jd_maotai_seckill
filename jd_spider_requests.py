@@ -131,12 +131,13 @@ class QrLogin:
         通过访问用户订单列表页进行判断：若未登录，将会重定向到登陆页面。
         :return: cookies是否有效 True/False
         """
+        return False
         url = 'https://order.jd.com/center/list.action'
         payload = {
             'rid': str(int(time.time() * 1000)),
         }
         try:
-            resp = self.session.get(url=url, params=payload, allow_redirects=False)
+            resp = self.session.get(url=url, params=payload, allow_redirects=False,timeout=5)
             if resp.status_code == requests.codes.OK:
                 return True
         except Exception as e:
@@ -271,7 +272,7 @@ class JdSeckill(object):
 
         # 初始化信息
         self.sku_id = global_config.getRaw('config', 'sku_id')
-        self.seckill_num = 2
+        self.seckill_num = 1
         self.seckill_init_info = dict()
         self.seckill_url = dict()
         self.seckill_order_data = dict()
